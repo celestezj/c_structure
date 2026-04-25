@@ -1,0 +1,40 @@
+# 编译产生的目标文件
+*.o
+*.obj
+
+# 可执行文件
+*.exe
+*.out
+*.app
+*.elf
+
+# 库文件
+*.a
+*.lib
+*.so
+*.so.*
+*.dll
+*.dylib
+
+# 调试文件
+*.gdb
+*.pdb
+*.map
+
+# 编辑器/IDE 临时文件
+.vscode/
+.vs/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# 编译日志、缓存
+*.log
+*.cache
+*.pid
+
+# 构建目录
+build/
+bin/
+obj/
