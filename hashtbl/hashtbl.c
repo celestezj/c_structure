@@ -371,6 +371,9 @@ int hashtbl_traverse_each_safe(hashtbl_t *hashtbl, hashtbl_traverse_func func, v
 }
 
 int hashtbl_print_one(void *item, void *args) {
+	if (!item) {
+		return -1;
+	}
     hashtbl_printer_context_t *context = (hashtbl_printer_context_t *)args;
     context->iter_num++;
     printf("(%u:%s)", context->iter_num, context->print_one_func(item, context->args));
@@ -382,6 +385,9 @@ int hashtbl_print_one(void *item, void *args) {
 
 void hashtbl_print_all(hashtbl_t *hashtbl, hashtbl_traverse_print_func print_one_func, void *args, 
                        hashtbl_printer_context_t *context) {
+	if (!hashtbl || !print_one_func || !context) {
+		return;
+	}
     context->iter_num = 0;
     context->total_num = hashtbl->num_items;
     context->print_one_func = print_one_func;
