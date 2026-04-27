@@ -1,4 +1,5 @@
 #include "hashtbl/easyhash.h"
+#include "hashtbl/hashtbl_stats.h" //gcc demo_easyhash.c hashtbl/hashtbl.c hashtbl/hashtbl_stats.c -o demo_stats -lm
 
 #define LOG_SIZE 12
 uint32_t hash_size = 1 << LOG_SIZE;
@@ -41,6 +42,8 @@ int main() {
     HASHTBL_INSTANCE_INSERT_ITEM(data_node_t, integer, &node2);
     HASHTBL_INSTANCE_INSERT_ITEM(data_node_t, integer, &node3);
     HASHTBL_INSTANCE_PRINT_ALL_ITEM(data_node_t, integer, print_data_node, NULL, &context);
+    hashtbl_print_stats_report(HASHTBL_INSTANCE(data_node_t, integer).ht);
+    // hashtbl_export_distribution_csv(HASHTBL_INSTANCE(data_node_t, integer).ht, "distribution.csv");
     HASHTBL_INSTANCE_DEL_ITEM(data_node_t, integer, &node1);
     HASHTBL_INSTANCE_DEL_ITEM(data_node_t, integer, &node2);
     HASHTBL_INSTANCE_DEL_ITEM(data_node_t, integer, &node3);

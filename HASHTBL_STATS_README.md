@@ -7,7 +7,7 @@
 ## 编译
 
 ```bash
-gcc demo_stats.c hashtbl/hashtbl.c hashtbl/hashtbl_stats.c -o demo_stats -lm
+gcc demo_hashtbl_stats.c hashtbl/hashtbl.c hashtbl/hashtbl_stats.c -o demo_stats -lm
 ```
 
 ## 统计指标说明

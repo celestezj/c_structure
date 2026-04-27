@@ -4,6 +4,8 @@
 #include "hashtbl/hashtbl.h"
 #include "hashtbl/hashtbl_stats.h"
 
+// gcc demo_hashtbl_stats.c hashtbl/hashtbl.c hashtbl/hashtbl_stats.c -o demo_stats -lm
+
 // 测试数据结构
 typedef struct test_node_ {
     hashtbl_link_t link;
