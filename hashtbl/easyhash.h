@@ -4,7 +4,10 @@
 #include "./hashtbl.h"
 
 /* Universal HASH Table Encapsulation API
-   Note: `type` struct must define `u_hashlink_##instance` field */
+   Note: `type` struct must define `u_hashlink_##instance` field
+   Author: muggledy
+   Date: 2026.1.17
+*/
 
 #define HASHLINK(key) u_hashlink_##key
 
@@ -117,4 +120,7 @@
 	((HASHTBL_INSTANCE(type, instance).ht && obj) ?                                                \
 		 (HASHTBL_INSTANCE_PTR(type, instance)->find(HASHTBL_INSTANCE_PTR(type, instance), obj)) : \
 		 NULL)
+#define HASHTBL_INSTANCE_PRINT_ALL_ITEM(type, instance, print_func, print_args, context) \
+    hashtbl_print_all(HASHTBL_INSTANCE(type, instance).ht, print_func, print_args, context)
+
 #endif

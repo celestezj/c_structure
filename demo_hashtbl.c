@@ -54,7 +54,7 @@ int print_data_node(data_node_t *node, void *args) {
     return 0;
 }
 
-void hashtbl_print_all(hashtbl_t *hashtbl) {
+void hashtbl_print_all_items(hashtbl_t *hashtbl) {
     iter_num = 0;
     total_num = hashtbl->num_items;
     printf("哈希表：");
@@ -74,10 +74,10 @@ int main() {
     hashtbl_insert_data_node(my_hashtbl, &node1);
     hashtbl_insert_data_node(my_hashtbl, &node2);
     hashtbl_insert_data_node(my_hashtbl, &node3);
-    hashtbl_print_all(my_hashtbl);
+    hashtbl_print_all_items(my_hashtbl);
     hashtbl_del_data_node(my_hashtbl, &node1);
     hashtbl_del_data_node(my_hashtbl, &node2);
     hashtbl_del_data_node(my_hashtbl, &node3);
-    hashtbl_print_all(my_hashtbl);
+    hashtbl_print_all_items(my_hashtbl);
     return 0;
 }

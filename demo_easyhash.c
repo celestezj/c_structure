@@ -21,28 +21,11 @@ int hashtbl_compare_data_node(data_node_t *node1, data_node_t *node2) {
     return 0;
 }
 
-uint32_t iter_num = 0; //当前已迭代节点数量
-uint32_t total_num = 0; //哈希表中全部节点数量
-
-int print_data_node(data_node_t *node, void *args) {
-    iter_num++;
-    printf("(%u:%u)", iter_num, node->value);
-    if (iter_num != total_num) { //非最后一个节点
-        printf("->");
-    }
-    return 0;
-}
-
-void hashtbl_print_all(hashtbl_t *hashtbl) {
-    iter_num = 0;
-    total_num = hashtbl->num_items;
-    printf("哈希表：");
-    if (!total_num) {
-        printf("空\n");
-        return;
-    }
-    hashtbl_traverse_each(hashtbl, (hashtbl_traverse_func)print_data_node, NULL);
-    printf("\n");
+char* print_data_node(void *_node, void *_args) {
+    static char buffer[8];
+    data_node_t *node = (data_node_t*)_node;
+    snprintf(buffer, sizeof(buffer), "%u", node->value);
+    return buffer;
 }
 
 CREATE_HASHTBL_INSTANCE_WITH_HASH_CMP(data_node_t, integer, 
@@ -50,16 +33,17 @@ CREATE_HASHTBL_INSTANCE_WITH_HASH_CMP(data_node_t, integer,
 
 int main() {
     INIT_HASHTBL_INSTANCE(data_node_t, integer, 12, 0); //初始化哈希表实例，并指定容量大小
-    data_node_t node1 = {.value = 11111};
-    data_node_t node2 = {.value = 22222};
-    data_node_t node3 = {.value = 33333};
+    data_node_t node1 = {.value = 111};
+    data_node_t node2 = {.value = 222};
+    data_node_t node3 = {.value = 333};
+    hashtbl_printer_context_t context;
     HASHTBL_INSTANCE_INSERT_ITEM(data_node_t, integer, &node1);
     HASHTBL_INSTANCE_INSERT_ITEM(data_node_t, integer, &node2);
     HASHTBL_INSTANCE_INSERT_ITEM(data_node_t, integer, &node3);
-    hashtbl_print_all(HASHTBL_INSTANCE(data_node_t, integer).ht);
+    HASHTBL_INSTANCE_PRINT_ALL_ITEM(data_node_t, integer, print_data_node, NULL, &context);
     HASHTBL_INSTANCE_DEL_ITEM(data_node_t, integer, &node1);
     HASHTBL_INSTANCE_DEL_ITEM(data_node_t, integer, &node2);
     HASHTBL_INSTANCE_DEL_ITEM(data_node_t, integer, &node3);
-    hashtbl_print_all(HASHTBL_INSTANCE(data_node_t, integer).ht);
+    HASHTBL_INSTANCE_PRINT_ALL_ITEM(data_node_t, integer, print_data_node, NULL, &context);
     return 0;
 }

@@ -369,3 +369,28 @@ int hashtbl_traverse_each_safe(hashtbl_t *hashtbl, hashtbl_traverse_func func, v
 
 	return 0;
 }
+
+int hashtbl_print_one(void *item, void *args) {
+    hashtbl_printer_context_t *context = (hashtbl_printer_context_t *)args;
+    context->iter_num++;
+    printf("(%u:%s)", context->iter_num, context->print_one_func(item, context->args));
+    if (context->iter_num != context->total_num) { //非最后一个节点
+        printf("->");
+    }
+    return 0;
+}
+
+void hashtbl_print_all(hashtbl_t *hashtbl, hashtbl_traverse_print_func print_one_func, void *args, 
+                       hashtbl_printer_context_t *context) {
+    context->iter_num = 0;
+    context->total_num = hashtbl->num_items;
+    context->print_one_func = print_one_func;
+    context->args = args;
+    printf("哈希表：");
+    if (!(context->total_num)) {
+        printf("空\n");
+        return;
+    }
+    hashtbl_traverse_each(hashtbl, (hashtbl_traverse_func)hashtbl_print_one, context);
+    printf("\n");
+}

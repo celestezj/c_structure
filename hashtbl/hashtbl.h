@@ -35,6 +35,14 @@ typedef int (*hashtbl_comp_func)(void *item, void *target_obj);
 typedef int (*hashtbl_comp_func2)(void *item, void *target_obj, void *arg);
 typedef int (*hashtbl_traverse_func)(void *item, void *arg);
 typedef int (*hashtbl_traverse_func2)(void *item);
+typedef char* (*hashtbl_traverse_print_func)(void *item, void *arg);
+
+typedef struct hashtbl_printer_context_ {
+    uint32_t iter_num; //当前已迭代节点数量
+    uint32_t total_num; //哈希表中全部节点数量
+    hashtbl_traverse_print_func print_one_func; //用户自定义的迭代打印单个哈希表item字符串的函数
+    void *args; //打印的附加参数，没有填写NULL
+} hashtbl_printer_context_t;
 
 extern uint32_t hashtbl_hash_uint32(uint32_t a, int32_t hash_size);
 extern uint32_t hashtbl_hash_data(const uint8_t *data, int32_t len, int32_t hash_size);
@@ -51,5 +59,7 @@ extern int hashtbl_reset(hashtbl_t *tbl);
 extern int hashtbl_traverse_each(hashtbl_t *hashtbl, hashtbl_traverse_func func, void *arg);
 extern int hashtbl_free_all_objects(hashtbl_t *hashtbl, hashtbl_traverse_func func, void *args); 
 extern int hashtbl_traverse_each_safe(hashtbl_t *hashtbl, hashtbl_traverse_func func, void *args);
+extern void hashtbl_print_all(hashtbl_t *hashtbl, hashtbl_traverse_print_func print_one_func, void *args, 
+                       hashtbl_printer_context_t *context);
 
 #endif
