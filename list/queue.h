@@ -1,5 +1,5 @@
-#ifndef INTRUSIVE_QUEUE_H
-#define INTRUSIVE_QUEUE_H
+#ifndef __INTRUSIVE_QUEUE_H__
+#define __INTRUSIVE_QUEUE_H__
 
 #include "list.h"
 #include <stddef.h>

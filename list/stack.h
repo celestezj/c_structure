@@ -1,5 +1,5 @@
-#ifndef INTRUSIVE_STACK_H
-#define INTRUSIVE_STACK_H
+#ifndef __INTRUSIVE_STACK_H__
+#define __INTRUSIVE_STACK_H__
 
 #include "list.h"
 

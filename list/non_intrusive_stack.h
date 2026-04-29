@@ -3,8 +3,8 @@
  * 基于 list.h TAILQ
  * 无侵入业务结构体
  */
-#ifndef GENERIC_STACK_H
-#define GENERIC_STACK_H
+#ifndef __GENERIC_STACK_H__
+#define __GENERIC_STACK_H__
 
 #include "list.h"
 #include <stdlib.h>

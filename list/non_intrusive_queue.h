@@ -1,5 +1,5 @@
-#ifndef GENERIC_QUEUE_H
-#define GENERIC_QUEUE_H
+#ifndef __GENERIC_QUEUE_H__
+#define __GENERIC_QUEUE_H__
 
 #include "list.h"
 #include <stdlib.h>

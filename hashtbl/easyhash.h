@@ -1,5 +1,5 @@
-#ifndef _HASHTBL_WRAPPER_H_
-#define _HASHTBL_WRAPPER_H_
+#ifndef __HASHTBL_WRAPPER_H__
+#define __HASHTBL_WRAPPER_H__
 
 #include "./hashtbl.h"
 
